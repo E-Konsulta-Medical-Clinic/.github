@@ -14,4 +14,4 @@
 
 ## 🔐 Security & Traceability
 - [ ] This change does not expose Sensitive Patient Data (PII)
-- [ ] Branch follows naming convention: `[type]/[ID]-description`
+- [ ] Branch follows naming convention: `[type]/[ID]-description
