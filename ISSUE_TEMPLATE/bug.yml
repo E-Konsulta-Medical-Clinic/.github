@@ -1,0 +1,120 @@
+name: Bug
+description: An unexpected problem or behavior
+title: "[BUG] "
+labels: ["bug"]
+type: Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Title format: `[BUG] <App>: <present tense>`.
+        Example: `[BUG] Center: Self-booking submit button returns 500 error`.
+
+        App names: Center, Patient, Doctor, Partner, API, Messaging.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: One or two sentences. Present tense. What is broken.
+      placeholder: The submit button on self-booking returns a 500 when the patient has no default clinic.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Commands. Not a novel. Tell the developer exactly what to click.
+      placeholder: |
+        1. Go to '/booking'
+        2. Click 'Schedule Appointment'
+        3. Type 'Test' in the name field
+        4. Click Submit
+        5. See error
+      value: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: Start with "Should". What was supposed to happen.
+      placeholder: Should save the booking and show the confirmation screen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: Present tense. What is happening right now.
+      placeholder: The API returns 500 and the button stays in a loading state.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: app
+    attributes:
+      label: App
+      options:
+        - Control Center
+        - Patient Portal
+        - Doctor UI
+        - Partner UI
+        - EPMS API
+        - Messaging
+        - Notification Consumer
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Production
+        - Staging
+        - Local
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: Optional.
+      placeholder: macOS, Windows 11, iOS 17
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: Optional. Web only.
+      placeholder: Chrome 126, Safari 17
+
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: Optional.
+      placeholder: iPhone 14 Pro, Desktop
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Visual Proof
+        Drag screenshots or a screen recording onto the issue after you submit.
+        UI bugs and anything with more than two screens need a video.
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Context
+      description: Optional. Patient IDs, request IDs, links. No passwords. No tokens.

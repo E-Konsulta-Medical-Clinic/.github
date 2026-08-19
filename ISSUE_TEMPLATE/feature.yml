@@ -1,0 +1,81 @@
+name: Feature
+description: A request, idea, or new functionality. Parent issue. Business value and QA checklist live here.
+title: "[FEAT] "
+labels: ["enhancement"]
+type: Feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Title format: `[FEAT] <App>: <short outcome>`.
+        Example: `[FEAT] Center: PCO can assign a chat to themselves`.
+
+        This is the parent. Devs split work into Tasks in the repo that ships the code.
+        If it is not in Acceptance Criteria, it will not get built.
+
+  - type: textarea
+    id: user_story
+    attributes:
+      label: User Story
+      description: Who, what, why. Keep it one block.
+      value: |
+        As a [type of user]
+        I want to [the action]
+        So that [the business value]
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why are we building this?
+      description: One or two sentences of business context. Not a solution design.
+      placeholder: PCOs lose chats in New because assignment is buried in a menu. We need one-click assign so the queue actually moves.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: QA checklist. Each Then must be something a human can see or click. No implementation details. If it is not in this list, it will not get built.
+      value: |
+        - [ ] Scenario: [who does what]
+          - Given [starting state]
+          - When [the action]
+          - Then [what QA can see]
+        - [ ] Scenario: [edge or empty / error case]
+          - Given [starting state]
+          - When [the action]
+          - Then [what QA can see]
+    validations:
+      required: true
+
+  - type: input
+    id: figma
+    attributes:
+      label: Figma
+      description: Link, or leave blank if there is no design.
+      placeholder: https://www.figma.com/design/...
+
+  - type: textarea
+    id: design_states
+    attributes:
+      label: Design states
+      description: Required even with Figma. If the file covers it, write "See Figma". If there is no Figma, describe each state.
+      value: |
+        - Ideal: See Figma
+        - Empty: See Figma
+        - Loading: See Figma
+        - Error: See Figma
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Technical sub-issues
+        Do not fake `#___` checklists here.
+
+        Devs create a **Task** in each implementing repo and link it as a GitHub sub-issue of this Feature.
+        Frontend, API, workers, messaging — one Task per repo, then one PR per Task.

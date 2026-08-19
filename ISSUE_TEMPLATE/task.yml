@@ -1,0 +1,72 @@
+name: Task
+description: One repo, one job. Link a parent Feature (or Bug). This is what a PR closes.
+title: "[TASK] "
+type: Task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Title format: `[TASK] <Repo>: <what this repo ships>`.
+        Example: `[TASK] API: Persist lostReason when a conversation is marked LOST`.
+
+        Fill this in two minutes. If you need a design doc, the parent Feature is unfinished.
+
+  - type: input
+    id: parent
+    attributes:
+      label: Parent
+      description: Feature or Bug this Task belongs to. Full URL or `org/repo#123`.
+      placeholder: https://github.com/E-Konsulta-Medical-Clinic/epms-control-center-ui/issues/123
+    validations:
+      required: true
+
+  - type: dropdown
+    id: repo
+    attributes:
+      label: This ships in
+      options:
+        - epms-control-center-ui
+        - epms-patient-ui
+        - epms-doctor-ui
+        - epms-partner-ui
+        - epms-api
+        - epms-messaging
+        - epms-notification-consumer
+        - epms-aiko-consumer
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: ships
+    attributes:
+      label: What this ships
+      description: 1–3 sentences. What this repo will change. Not how. No architecture novel.
+      placeholder: Control Center shows Assign to me on New conversations and moves the card to Mine. No API contract change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: done_when
+    attributes:
+      label: Done when
+      description: Copy the parent Acceptance Criteria this Task covers. QA will tick these on the PR.
+      value: |
+        - [ ] Scenario: [copied from parent]
+          - Given ...
+          - When ...
+          - Then ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: Optional. What this Task will not do.
+
+  - type: textarea
+    id: watchouts
+    attributes:
+      label: Watch-outs
+      description: Optional. One-liners only. Permission, migration, feature flag, API contract, PII.

@@ -1,17 +1,17 @@
-## 🩺 Clinical Context (E-Konsulta)
-**Ticket ID:** #
-**Automation Link:** Closes #
-## 🛠️ Type of Change
-- [ ] **Feature (feat):** New clinical or administrative functionality
-- [ ] **Bug Fix (fix):** Resolving an issue in Staging or Production
-- [ ] **Task (task):** Technical debt, refactoring, or DevOps changes
+## Closes
+Closes #<task-or-bug>
 
-## 🧪 Quality Assurance (QA)
-- [ ] Verified on **Staging** environment
-- [ ] **Database:** Migrations applied (if any)
-- [ ] **UI/UX:** Verified on Mobile and Desktop sizes
-- [ ] **Logs:** Checked for new errors or warnings
+## Parent
+Part of #<feature>
 
-## 🔐 Security & Traceability
-- [ ] This change does not expose Sensitive Patient Data (PII)
-- [ ] Branch follows naming convention: `[type]/[ID]-description
+<!-- Never write Closes on the parent Feature. Staging QA closes that. -->
+
+## What changed
+-
+
+## How to QA
+- [ ]
+
+## Risk
+- [ ] No new patient data (PII) exposed
+- Extra: none | migration | permission | flag
