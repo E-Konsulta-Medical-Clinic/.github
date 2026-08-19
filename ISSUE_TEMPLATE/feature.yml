@@ -10,7 +10,8 @@ body:
         Title format: `[FEAT] <App>: <short outcome>`.
         Example: `[FEAT] Center: PCO can assign a chat to themselves`.
 
-        This is the parent. Devs split work into Tasks in the repo that ships the code.
+        This is the parent. It can live in a facing app or in a backend.
+        Devs split work into Tasks in every repo that ships — including other frontends.
         If it is not in Acceptance Criteria, it will not get built.
 
   - type: textarea
@@ -78,4 +79,4 @@ body:
         Do not fake `#___` checklists here.
 
         Devs create a **Task** in each implementing repo and link it as a GitHub sub-issue of this Feature.
-        Frontend, API, workers, messaging — one Task per repo, then one PR per Task.
+        Other frontends, API, workers, messaging — one Task per repo, then one PR per Task.

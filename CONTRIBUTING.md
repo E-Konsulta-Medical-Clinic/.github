@@ -6,7 +6,7 @@ Screenshot the TL;DR. Then pretend you read the rest.
 
 ## TL;DR
 
-- **Feature** = the promise. Lives in the **app the human uses**. QA ticks this one on staging.
+- **Feature** = the promise. Lives in the **owning repo** (usually the primary app, sometimes the backend). QA ticks this one on staging.
 - **Task** = one repo doing one job. This is what your PR closes.
 - **Bug** = something is wrong. Same closing rules as a Task. If it belongs to a Feature, it is a sub-issue, not a rewrite of the Feature.
 - **One Task, one branch, one PR.** If your PR also "quickly" touches two other repos, that is three Tasks and you know it.
@@ -16,10 +16,10 @@ Screenshot the TL;DR. Then pretend you read the rest.
 flowchart TD
   po[PO opens a GitHub form]
   forms[Required fields exist now. Use them.]
-  parent[Feature in the facing-app repo]
-  bug[Bug in the facing-app repo]
+  parent[Feature in the owning repo]
+  bug[Bug in the owning repo]
   refine[Someone who can read the codebase refines AC]
-  tasks[Task per implementing repo]
+  tasks[Task per implementing repo including other frontends]
   branch[One branch per Task or Bug]
   pr[One PR Closes that Task or Bug]
   qa[QA runs the parent AC on staging]
@@ -45,29 +45,32 @@ If your "Feature" is "fix the button," you picked the wrong form. If your "Bug" 
 
 ## Where the ticket lives
 
-Create the **Feature** or **standalone Bug** in the repo the user actually opens:
+The **Feature** (or standalone Bug) lives in the **owning repo**. Default: the primary app a human opens. It can also live in a backend when that repo owns the work (`epms-api`, `epms-messaging`, a consumer).
 
-| Human uses | Ticket lives in |
+| If the story is mainly… | Parent lives in |
 |---|---|
-| Control Center / PCO tools / Chat Manager UI | `epms-control-center-ui` |
+| Control Center / PCO / Chat Manager UI | `epms-control-center-ui` |
 | Patient app | `epms-patient-ui` |
 | Doctor app | `epms-doctor-ui` |
 | Partner app | `epms-partner-ui` |
-| API only, no UI | `epms-api` |
+| Legacy / public web | `epms-web-ui` |
+| API-owned (or no UI yet) | `epms-api` |
+| Messaging-owned | `epms-messaging` |
+| A worker / consumer | that consumer repo |
 
-**Tasks** live in the repo that will ship the code. Link them as GitHub **sub-issues** of the parent. Cross-repo is fine. Dumping `[API]` tickets in Control Center because "that is where the board is" is how we got here.
+**Tasks** are sub-issues in **every** repo that ships code for that Feature. That includes **other frontends**, not only API and workers. A Center Feature can have Tasks in Patient, Doctor, API, and messaging. An API parent can have frontend Tasks. Cross-repo is the point.
 
-Chat Manager backend work: parent in `epms-control-center-ui`, Task in `epms-messaging`.
+One Task per repo. One PR per Task. Do not file the Patient work as a comment on the Center parent.
 
 ```mermaid
 flowchart TD
   what[What are you filing]
   what --> feat[Feature or standalone Bug]
   what --> task[Task]
-  feat --> ui{Does a human see it}
-  ui -->|Center Patient Doctor Partner| appRepo[Facing-app repo]
-  ui -->|API only| apiRepo[epms-api]
-  task --> impl[Repo that ships the code]
+  feat --> owner{Who owns the story}
+  owner -->|Primary UI| appRepo[Facing-app repo]
+  owner -->|Backend-owned| backendRepo[API messaging or consumer]
+  task --> impl[Each repo that ships including other frontends]
   impl --> link[Link as sub-issue of the parent]
 ```
 
@@ -135,4 +138,4 @@ Devs and AI will refine messy Features against the codebase. That is not a licen
 
 ## Engineers using Cursor
 
-There is a skill called `ek-github-workflow`. Use it to refine AC, split Tasks, and write PR bodies. It will not write you a sarcastic ticket. The jokes stay on this page. The tickets stay boring on purpose.
+There is a skill called `ek-github-workflow` in each product repo (`.cursor/skills/ek-github-workflow/`). Use it to refine AC, split Tasks, and write PR bodies. It will not write you a sarcastic ticket. The jokes stay on this page. The tickets stay boring on purpose.

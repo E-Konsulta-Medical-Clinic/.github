@@ -32,34 +32,40 @@ Filled examples: [examples.md](examples.md)
 | **Task** | One repo will ship part of a Feature (or a Bug). This is what a PR closes. | `[TASK] <Repo>: <what this repo ships>` |
 | **Bug** | Unexpected behaviour. Standalone or sub-issue of a Feature. | `[BUG] <App>: <present tense problem>` |
 
-App names in titles: `Center`, `Patient`, `Doctor`, `Partner`, `API`, `Messaging`.
+App names in titles: `Center`, `Patient`, `Doctor`, `Partner`, `Web`, `API`, `Messaging`.
 
 If the request is "fix the button," it is a Bug. If it is "add a report," it is a Feature. Do not file a Feature named like a Bug.
 
 ## Pick the repo (issue home)
 
-**Feature and standalone Bug** → the repo the user opens:
+**Feature and standalone Bug** → the **owning repo**. Default: the primary app a human opens. The parent can live in a backend when that repo owns the work.
 
-| Human uses | Repo |
+| If the story is mainly… | Parent repo |
 |---|---|
-| Control Center, PCO tools, Chat Manager UI | `E-Konsulta-Medical-Clinic/epms-control-center-ui` |
+| Control Center, PCO, Chat Manager UI | `E-Konsulta-Medical-Clinic/epms-control-center-ui` |
 | Patient app | `E-Konsulta-Medical-Clinic/epms-patient-ui` |
 | Doctor app | `E-Konsulta-Medical-Clinic/epms-doctor-ui` |
 | Partner app | `E-Konsulta-Medical-Clinic/epms-partner-ui` |
-| API only, no UI | `E-Konsulta-Medical-Clinic/epms-api` |
+| Legacy / public web | `E-Konsulta-Medical-Clinic/epms-web-ui` |
+| API-owned, or no UI yet | `E-Konsulta-Medical-Clinic/epms-api` |
+| Messaging-owned | `E-Konsulta-Medical-Clinic/epms-messaging` |
+| A worker / consumer | that consumer repo |
 
-**Task** → the repo that will ship the code. Link it as a GitHub sub-issue of the parent. Cross-repo is expected.
+**Task** → every repo that ships code for that Feature, linked as a GitHub sub-issue. Cross-repo is expected. Other **frontends** are Tasks too, not only API and workers.
 
-Chat Manager backend: parent in `epms-control-center-ui`, Task in `epms-messaging`.
+Examples:
+- Parent in Center → Tasks in Patient, Doctor, `epms-api`, `epms-messaging` as needed.
+- Parent in `epms-api` → Tasks in Center / Patient / Doctor if those UIs change.
+- Chat Manager: parent in Center **or** `epms-messaging` if backend-owned; UI Task still goes in Center.
 
-Do not dump `[API]` tickets in Control Center because that is where the board lives.
+Do not file another app's work as a comment on the parent. Make a Task in that app's repo.
 
 ## Refine a Feature before splitting Tasks
 
 1. Read the issue (`gh issue view`).
 2. Read the relevant code.
 3. Rewrite Acceptance Criteria as a QA checklist (format below). Drop anything QA cannot observe.
-4. Propose Tasks: one per implementing repo. Each Task `Done when` is the subset of parent AC that repo covers.
+4. Propose Tasks: one per implementing repo, including other frontends. Each Task `Done when` is the subset of parent AC that repo covers.
 5. Show the draft. Create only after the user agrees.
 
 Rule: if it is not in the parent AC list, it will not get built. Do not invent extra scope.
