@@ -258,3 +258,26 @@ Never put `Closes` on the parent Feature. Omit the Parent section on a standalon
 How to QA = the `Done when` / AC this PR covers, as checkboxes. Not a staging sign-off of the whole Feature.
 
 When opening the PR, use `gh pr create` with this body. Do not let `Closes` point at the Feature.
+
+
+## Board statuses (EPMS Portals project)
+
+Automation (`board-automation.yml`) moves tickets. Do not drag what it owns.
+
+Manual moves only:
+
+- PO / lead: For Business Refinement → Tech Refinement → Next Sprint → Todo (This Sprint)
+- Dev: Todo (This Sprint) → In Progress when starting work
+- QA: Staging → Ready to be Merged after staging sign-off
+- Leads: → LOCKED (comment why). Sophia: Done → Announced. Admin: → COMPUTED
+
+Automatic:
+
+- Issue opened: Feature/Bug → For Business Refinement. Task → parent status, else Tech Refinement.
+- PR ready for review → Code Review. Review requests changes → Changes Requested.
+- PR merged to staging: Task → Done (Sub-Tasks). Bug → Staging. Parent Feature → Staging when all sub-issues close.
+- Release (staging → main): Ready to be Merged items → Done (Feature) or Bugs - Fixed (Bug).
+
+PR gate: every non-draft PR fails unless the ticket it closes has an issue Type, an assignee, Requestor, and Sprint. Fix the ticket, then re-run the failed check.
+
+Full guide: https://github.com/E-Konsulta-Medical-Clinic/.github/blob/main/BOARD_GUIDE.md

@@ -66,6 +66,19 @@ The robot knows the difference between a Task, a Bug, and a Feature from the **i
 | Announced → COMPUTED | Admin, after payout processing |
 | anywhere → LOCKED | Lead, with a comment explaining why |
 
+### The PR gate: required ticket fields
+
+Every non-draft PR runs a **Validate ticket fields** check against the ticket it closes. It fails, telling you exactly what is missing, when the ticket lacks any of:
+
+| Required | Where it lives |
+|---|---|
+| Issue **Type** (Task / Bug / Feature) | On the issue itself |
+| At least one **assignee** | On the issue itself |
+| **Requestor** | Board field |
+| **Sprint** | Board field |
+
+Fix the ticket, then re-run the failed check (repo → Actions → the failed run → "Re-run failed jobs"). Release PRs to `main` that close no ticket are skipped on purpose. There is no branch protection on the current plan, so a red check does not physically block a merge — treat it as if it did.
+
 ## Ticket lifecycles
 
 ```mermaid
@@ -120,7 +133,7 @@ Assignees still work as usual; the Developer/Tester fields exist so payout repor
 
 1. **Do not drag robot-owned columns.** If a ticket is in the wrong automated column, the fix is in the PR/issue linkage (`Closes #`), not dragging.
 2. **Every PR closes exactly one Task or Bug** (`Closes #id`). Parent Features are referenced with `Part of #id`. See [CONTRIBUTING.md](CONTRIBUTING.md).
-3. **Set the issue Type.** The router treats typeless tickets with no `[TASK]`/`[BUG]`/`[FEAT]` prefix as Features.
+3. **Set the issue Type.** The PR gate fails without it, and the router treats typeless tickets with no `[TASK]`/`[BUG]`/`[FEAT]` prefix as Features.
 4. **Backlog is closed for business.** Raw ideas do not go on the engineering board.
 5. **LOCKED needs a comment.** A ticket parked without a reason is a mystery, not a record.
 
