@@ -11,6 +11,7 @@ Screenshot the TL;DR. Then pretend you read the rest.
 - **Bug** = something is wrong. Same closing rules as a Task. If it belongs to a Feature, it is a sub-issue, not a rewrite of the Feature.
 - **One Task, one branch, one PR.** If your PR also "quickly" touches two other repos, that is three Tasks and you know it.
 - Write `Closes #<task-or-bug>`. Write `Part of #<feature>`. Mix those up and you gaslight QA.
+- **The board moves itself.** A robot routes tickets on [the EPMS Portals board](https://github.com/orgs/E-Konsulta-Medical-Clinic/projects/1) from your PR events. Who moves what, and which columns are yours to drag: [BOARD_GUIDE.md](BOARD_GUIDE.md).
 
 ```mermaid
 flowchart TD
