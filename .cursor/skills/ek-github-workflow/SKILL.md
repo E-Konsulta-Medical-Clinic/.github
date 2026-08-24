@@ -46,7 +46,7 @@ If the request is "fix the button," it is a Bug. If it is "add a report," it is 
 | Patient app | `E-Konsulta-Medical-Clinic/epms-patient-ui` |
 | Doctor app | `E-Konsulta-Medical-Clinic/epms-doctor-ui` |
 | Partner app | `E-Konsulta-Medical-Clinic/epms-partner-ui` |
-| Legacy / public web | `E-Konsulta-Medical-Clinic/epms-web-ui` |
+| Public website (current site) | `E-Konsulta-Medical-Clinic/epms-web-ui` |
 | API-owned, or no UI yet | `E-Konsulta-Medical-Clinic/epms-api` |
 | Messaging-owned | `E-Konsulta-Medical-Clinic/epms-messaging` |
 | A worker / consumer | that consumer repo |

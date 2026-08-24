@@ -54,7 +54,7 @@ The **Feature** (or standalone Bug) lives in the **owning repo**. Default: the p
 | Patient app | `epms-patient-ui` |
 | Doctor app | `epms-doctor-ui` |
 | Partner app | `epms-partner-ui` |
-| Legacy / public web | `epms-web-ui` |
+| Public website (current site) | `epms-web-ui` |
 | API-owned (or no UI yet) | `epms-api` |
 | Messaging-owned | `epms-messaging` |
 | A worker / consumer | that consumer repo |
